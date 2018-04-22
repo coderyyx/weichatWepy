@@ -15,6 +15,9 @@ export default handleActions({
     }
   },
   [ASYNC_INCREMENT] (state, action) {
+    console.log('--reducer--');
+    console.log(state);
+    console.log(action)
     return {
       ...state,
       asyncNum: state.asyncNum + action.payload
