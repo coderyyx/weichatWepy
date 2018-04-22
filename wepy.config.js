@@ -3,7 +3,7 @@ var prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   wpyExt: '.wpy',
-  eslint: true,
+  eslint: false,
   cliLogs: !prod,
   build: {
     web: {
@@ -47,10 +47,13 @@ module.exports = {
   }
 }
 
+console.log(prod)
 if (prod) {
-
+  
   // 压缩sass
   // module.exports.compilers['sass'] = {outputStyle: 'compressed'}
+  // 压缩less
+  module.exports['less'] = {"compress": true};
 
   // 压缩js
   module.exports.plugins = {

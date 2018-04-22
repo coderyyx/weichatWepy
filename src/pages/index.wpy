@@ -85,9 +85,9 @@
   import { connect } from 'wepy-redux'
   import Panel from '@/components/panel' // alias example
   import Counter from 'counter' // alias example
-  import List from '../components/list' // aliasFields example
+  import List from '@/components/list' // aliasFields example
   import moduleA from 'module-a' // aliasFields ignore module example
-  import Group from '../components/group'
+  import Group from '@/components/group'
   import Toast from 'wepy-com-toast'
   import testMixin from '../mixins/test'
 
@@ -235,6 +235,7 @@
 
     onLoad() {
       let self = this
+      console.log(self.$parent)
       this.$parent.getUserInfo(function (userInfo) {
         if (userInfo) {
           self.userInfo = userInfo
