@@ -24,13 +24,12 @@ import { createAction } from 'redux-actions'
 //   return action;
 // };
 
-
 export const asyncInc = createAction(ASYNC_INCREMENT, (args) => {
   console.log('--test args--')
   console.log(args)
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve({data:[1,2],result:'success'})
+      resolve({data: [1, 2], result: 'success'})
     }, 1000)
   })
 })

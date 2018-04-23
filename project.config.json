@@ -1,13 +1,15 @@
 {
-  "description": "research",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram",
-  "appid": "touristappid",
-  "projectname": "mini_program",
-  "miniprogramRoot": "./dist"
+	"description": "research",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wx08d7ab2723e101c7",
+	"projectname": "weichatWepy",
+	"miniprogramRoot": "./dist",
+	"condition": {}
 }

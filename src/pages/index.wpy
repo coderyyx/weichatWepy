@@ -246,26 +246,37 @@
       'index-emit': (...args) => {
         let $event = args[args.length - 1]
         console.log(`${this.$name} receive ${$event.name} from ${$event.source.$name}`)
+      },
+      'boardcast-test':function(){
+        console.log('--child-receive-test--');
       }
     }
 
     onLoad() {
-      let self = this
-      console.log(self.$parent)
-      this.$parent.getUserInfo(function (userInfo) {
-        if (userInfo) {
-          self.userInfo = userInfo
-        }
-        self.normalTitle = '标题已被修改'
+      let self = this;
+      this.$parent.getUserInfo(function (userInfoPromise) {
+        userInfoPromise.then(data=>{
+          console.log('--data--')
+          console.log(data)
+          if (data) {
+            self.userInfo = data.userInfo;
+          }
+          self.normalTitle = '标题已被修改'
 
-        self.setTimeoutTitle = '标题三秒后会被修改'
-        setTimeout(() => {
-          self.setTimeoutTitle = '到三秒了'
-          self.$apply()
-        }, 3000)
+          self.setTimeoutTitle = '标题三秒后会被修改'
+          setTimeout(() => {
+            self.setTimeoutTitle = '到三秒了'
+            self.$apply()
+          }, 3000)
 
-        self.$apply()
-      })
+          self.$apply();
+
+        }).catch(error=>{
+          console.log('--error--')
+          console.log(error)
+        })
+        
+      });
     }
   }
 </script>

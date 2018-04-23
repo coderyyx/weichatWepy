@@ -10,9 +10,9 @@
 </style>
 
 <script>
-import wepy from 'wepy'
-import 'wepy-async-function'
-
+import wepy from 'wepy';
+import 'wepy-async-function';
+import Promise from 'promise-polyfill';
 import { setStore } from 'wepy-redux'
 import configStore from './store'
 
@@ -37,14 +37,21 @@ export default class extends wepy.app {
   }
 
   constructor () {
-    super()
-    this.use('requestfix')
+    super();
+    this.use('requestfix');
+    this.use('promisify');
   }
-
-  onLaunch() {
-    this.testAsync()
+  events = {
+    'boardcast-test':function(){
+      console.log('--test--');
+    }
   }
-
+  async onLaunch() {
+    this.testAsync();
+    const loginData = await wepy.login();
+    console.log(`--loginData--`);
+    console.log(loginData)
+  }
   sleep (s) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -60,15 +67,18 @@ export default class extends wepy.app {
 
   getUserInfo(cb) {
     const that = this
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
-    }
-    wepy.getUserInfo({
-      success (res) {
-        that.globalData.userInfo = res.userInfo
-        cb && cb(res.userInfo)
-      }
-    })
+    // if (this.globalData.userInfo) {
+    //   return this.globalData.userInfo
+    // }
+    let userInfoPromise = wepy.getUserInfo();
+    cb && cb(userInfoPromise);
+    return 0;
+    // wepy.getUserInfo({
+    //   success (res) {
+    //     that.globalData.userInfo = res.userInfo
+    //     cb && cb(res.userInfo)
+    //   }
+    // })
   }
 }
 </script>
