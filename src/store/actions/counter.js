@@ -24,12 +24,13 @@ import { createAction } from 'redux-actions'
 //   return action;
 // };
 
-export const asyncInc = createAction(ASYNC_INCREMENT, (args) => {
+export const asyncInc = createAction(ASYNC_INCREMENT, (...args) => {
   console.log('--test args--')
-  console.log(args)
+  console.log(args[0])
+  console.log(typeof args)
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve({data: [1, 2], result: 'success'})
+      resolve(parseInt(args[0]))
     }, 1000)
   })
 })

@@ -33,7 +33,7 @@
       <text class="info">{{num}}</text>
       <text class="info">{{asyncNum}}</text>
       <text class="info">{{sumNum}}</text>
-      <button @tap="plus('a')" size="mini">  +  </button>
+      <button @tap="plus('click')" size="mini" type="primary">plus</button>
     </panel>
 
     <panel>
@@ -198,13 +198,14 @@
     }
 
     methods = {
-      plus () {
-        this.mynum++
+      plus (args) {
+        console.log(`args:${args}`)
+        // this.mynum++
       },
       toast () {
         let promise = this.$invoke('toast', 'show', {
           title: '自定义标题',
-          img: 'https://raw.githubusercontent.com/kiinlam/wetoast/master/images/star.png'
+          img: 'https://oss.biosan.cn/weichat/biosan_logo.png'
         })
 
         promise.then((d) => {
